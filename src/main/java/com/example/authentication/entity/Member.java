@@ -1,5 +1,6 @@
 package com.example.authentication.entity;
 
+import io.jsonwebtoken.Claims;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
@@ -22,5 +23,9 @@ public class Member {
         this.id = id;
         this.password = password;
         this.loginedAt = loginedAt;
+    }
+
+    public Member(Claims claims) {
+        this.id = claims.get("id").toString();
     }
 }
