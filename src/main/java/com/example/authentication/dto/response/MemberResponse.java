@@ -15,8 +15,14 @@ public class MemberResponse {
     private final String rtnMsg;
 
     public MemberResponse(Member member, Code code){
-        this.result = member.getLoginedAt();
-        this.rtnCd = code.getStatus();
-        this.rtnMsg = code.getMessage();
+        if(code.getStatus() == 400) {
+            this.result = null;
+            this.rtnCd = code.getStatus();
+            this.rtnMsg = code.getMessage();
+        }else {
+            this.result = member.getLoginedAt();
+            this.rtnCd = code.getStatus();
+            this.rtnMsg = code.getMessage();
+        }
     }
 }
