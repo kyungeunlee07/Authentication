@@ -1,13 +1,12 @@
 package com.example.authentication.controller;
 
 import com.example.authentication.dto.request.LoginRequest;
-import com.example.authentication.dto.response.LoginResponse;
+import com.example.authentication.dto.request.MemberRequest;
+import com.example.authentication.dto.response.MemberResponse;
+import com.example.authentication.dto.response.TokenResponse;
 import com.example.authentication.service.MemberService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -16,9 +15,12 @@ public class MemberController {
 
     private final MemberService memberService;
     @PostMapping
-    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
-
+    public TokenResponse login(@RequestBody LoginRequest loginRequest) {
         return memberService.login(loginRequest);
     }
 
+    @GetMapping
+    public MemberResponse getMemberInfo(@RequestBody MemberRequest memberRequest) {
+        return memberService.getMemberInfo(memberRequest);
+    }
 }

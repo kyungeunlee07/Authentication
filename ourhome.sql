@@ -1,0 +1,2 @@
+INSERT INTO member (id, password, logined_at) VALUES ('ourhome', '$2a$10$JIAjjZly9rUGvjnVItpU4uFneOLFgHH/mRyxnr93KVQC2CoaKFopa', '2024-01-03 19:30:18.000000');
+INSERT INTO member (id, password, logined_at) VALUES ('hi', '$2a$10$JIAjjZly9rUGvjnVItpU4uFneOLFgHH/mRyxnr93KVQC2CoaKFopa', '2024-01-03 19:30:18.000000');

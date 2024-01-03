@@ -1,5 +1,6 @@
 package com.example.authentication.config;
 import com.example.authentication.jwt.JwtAuthenticationFilter;
+import com.example.authentication.jwt.JwtTokenProvider;
 import com.example.authentication.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,8 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter filter;
     private final CustomUserDetailsService customUserDetailsService;
+    private final JwtTokenProvider jwtTokenProvider;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(
@@ -36,6 +39,8 @@ public class SecurityConfig {
                                 .authenticated()
                 )
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
+                        UsernamePasswordAuthenticationFilter.class)
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         filter, UsernamePasswordAuthenticationFilter.class
                 );

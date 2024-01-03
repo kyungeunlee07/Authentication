@@ -11,3 +11,5 @@ spring:
       ddl-auto: create-drop
     defer-datasource-initialization: true
 
+jwt:
+  secret: eafb0e1a4d9a7e93bdb4e2374692eeae6a67ff96bf19ad8443a40a4e15ce81ba
